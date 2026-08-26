@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Aditya — Backend Developer building fintech payment systems with .NET." />
+  <title>Aditya · Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <canvas id="token-field" aria-hidden="true"></canvas>
+
+  <header class="topbar">
+    <a class="logo" href="#top">ADITYA<span class="logo-dot">/</span>SYS</a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="status-pill" id="status-pill" title="Live from /api/status">
+      <span class="status-dot"></span>
+      <span id="status-label">booting…</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="hero-meta mono">
+        <span id="env-label">env://local</span>
+        <span class="sep">·</span>
+        <span id="uptime-label">uptime --</span>
+      </p>
+      <h1 class="brand">Aditya</h1>
+      <p class="role" id="role-line">Backend Developer · Fintech</p>
+      <p class="pitch" id="tagline">
+        Building reliable payment systems and scalable backends in fintech.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="#work">View systems</a>
+        <a class="btn ghost" href="#contact">Open channel</a>
+      </div>
+      <div class="pipeline" aria-hidden="true">
+        <div class="pipeline-track">
+          <span class="pipeline-fill"></span>
+        </div>
+        <div class="pipeline-labels mono">
+          <span>build</span><span>test</span><span>deploy</span><span>observe</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <header class="section-head">
+        <p class="section-kicker mono">01 / ABOUT</p>
+        <h2>Systems thinker behind the endpoints.</h2>
+        <p class="section-lead">
+          ~<span id="years">2</span> years shipping backend systems in fintech—
+          transactions, payments, integrations, and production fire drills that turned into durable fixes.
+        </p>
+      </header>
+      <ul class="focus-list" id="focus-list"></ul>
+    </section>
+
+    <section class="section" id="work">
+      <header class="section-head">
+        <p class="section-kicker mono">02 / WORK</p>
+        <h2>Selected system work.</h2>
+        <p class="section-lead">Anonymized slices of the kind of backends I own day to day.</p>
+      </header>
+      <div class="work-stream" id="work-stream"></div>
+    </section>
+
+    <section class="section" id="stack">
+      <header class="section-head">
+        <p class="section-kicker mono">03 / STACK</p>
+        <h2>Tools that stay in production.</h2>
+        <p class="section-lead">Primary lane: C# / .NET. Supporting lane: databases, CI/CD, and the servers that keep money moving.</p>
+      </header>
+      <div class="stack-rail" id="stack-rail"></div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <header class="section-head">
+        <p class="section-kicker mono">04 / CONTACT</p>
+        <h2>Send a signal.</h2>
+        <p class="section-lead">Posts to a live .NET Minimal API — not a mailto fake.</p>
+      </header>
+      <div class="contact-grid">
+        <form class="contact-form" id="contact-form" novalidate>
+          <label>
+            <span class="mono">name</span>
+            <input type="text" name="name" required minlength="2" autocomplete="name" placeholder="Your name" />
+          </label>
+          <label>
+            <span class="mono">email</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" />
+          </label>
+          <label>
+            <span class="mono">message</span>
+            <textarea name="message" required minlength="10" rows="5" placeholder="What are you building?"></textarea>
+          </label>
+          <button class="btn primary" type="submit" id="contact-submit">Transmit</button>
+          <p class="form-status mono" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <aside class="contact-aside">
+          <p class="mono aside-label">channels</p>
+          <a id="link-email" href="mailto:hello@aditya.dev">hello@aditya.dev</a>
+          <a id="link-github" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a id="link-linkedin" href="https://linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+          <p class="aside-note">Update links in <code>appsettings.json</code>.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer mono">
+    <span>© <span id="year"></span> Aditya</span>
+    <span id="runtime-label">runtime —</span>
+  </footer>
+
+  <script src="/js/site.js" type="module"></script>
+</body>
+</html>
