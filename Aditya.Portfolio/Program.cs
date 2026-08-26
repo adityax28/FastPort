@@ -5,6 +5,13 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Render (and most PaaS hosts) inject PORT
+var port = Environment.GetEnvironmentVariable("PORT");
+if (!string.IsNullOrWhiteSpace(port))
+{
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+}
+
 builder.Services.Configure<PortfolioOptions>(
     builder.Configuration.GetSection(PortfolioOptions.SectionName));
 builder.Services.AddSingleton<PortfolioData>();
