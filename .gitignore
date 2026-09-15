@@ -1,7 +1,11 @@
-**/bin/
-**/obj/
-.vs/
-*.user
-*.suo
-appsettings.*.local.json
+*.exe
+*.test
+/bin/
+/server
+/server.exe
+.idea/
+.vscode/
 .DS_Store
+*.user
+# Legacy ASP.NET app (migrated to Go/Gin) — safe to delete locally
+Aditya.Portfolio/

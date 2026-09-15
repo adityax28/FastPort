@@ -1,8 +1,6 @@
-**/bin/
-**/obj/
-**/.vs/
-**/.git/
+**/.git
 **/.gitignore
-**/*.user
+**/Aditya.Portfolio
 **/*.md
-**/appsettings.Development.json
+**/.idea
+**/.vscode

@@ -1,24 +1,28 @@
-# Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Build (Go + Gin — replaces .NET SDK image)
+FROM golang:1.22-alpine AS build
 WORKDIR /src
 
-COPY Aditya.Portfolio/Aditya.Portfolio.csproj Aditya.Portfolio/
-RUN dotnet restore Aditya.Portfolio/Aditya.Portfolio.csproj
+COPY go.mod ./
+COPY go.sum* ./
+RUN go mod download
 
-COPY Aditya.Portfolio/ Aditya.Portfolio/
-WORKDIR /src/Aditya.Portfolio
-RUN dotnet publish -c Release -o /app/publish --no-restore
+COPY . .
+RUN go mod tidy && CGO_ENABLED=0 GOOS=linux go build -o /out/server ./cmd/server
 
 # Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM alpine:3.20
 WORKDIR /app
 
-ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+RUN apk add --no-cache ca-certificates
 
-COPY --from=build /app/publish .
+ENV GIN_MODE=release
+ENV APP_ENV=Production
+
+COPY --from=build /out/server /app/server
+COPY config.json /app/config.json
+COPY web /app/web
 
 EXPOSE 8080
 
-# Render sets $PORT; fall back to 8080 locally
-CMD ["sh", "-c", "ASPNETCORE_URLS=http://0.0.0.0:${PORT:-8080} exec dotnet Aditya.Portfolio.dll"]
+# Render injects PORT; our app reads os.Getenv("PORT")
+CMD ["/app/server"]
