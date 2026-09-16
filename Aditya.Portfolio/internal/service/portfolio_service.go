@@ -47,21 +47,21 @@ func (s *PortfolioService) GetProfile() models.ProfilePayload {
 				ID:      "pay-core",
 				Title:   "Payment transaction pipeline",
 				Summary: "Backend flows for payment initiation, status tracking, and reconciliation-oriented processing in a fintech environment.",
-				Tags:    []string{"C#", ".NET", "SQL", "APIs"},
+				Tags:    []string{"Go", "Gin", "SQL", "APIs"},
 				Impact:  "Reliable handling of high-value money movement paths.",
 			},
 			{
 				ID:      "api-mesh",
 				Title:   "Upstream / downstream integrations",
 				Summary: "Hardened API integrations with external and internal services—timeouts, retries, and clear failure surfaces for operators.",
-				Tags:    []string{".NET", "HTTP", "CI/CD"},
+				Tags:    []string{"Go", "HTTP", "CI/CD"},
 				Impact:  "Fewer silent failures; faster incident diagnosis.",
 			},
 			{
 				ID:      "db-perf",
 				Title:   "Query & throughput optimization",
 				Summary: "Identified hot paths, tightened queries and indexes, and reduced latency under production load.",
-				Tags:    []string{"SQL Server", "Profiling", "Caching"},
+				Tags:    []string{"PostgreSQL", "Profiling", "Caching"},
 				Impact:  "Measurable wins on critical transaction endpoints.",
 			},
 			{
@@ -73,8 +73,8 @@ func (s *PortfolioService) GetProfile() models.ProfilePayload {
 			},
 		},
 		Stack: []string{
-			"C#", ".NET", "ASP.NET Core", "SQL Server", "REST APIs",
-			"CI/CD", "Git", "Caching", "Logging", "Fintech domain", "Go", "Gin",
+			"Go", "Gin", "PostgreSQL", "REST APIs",
+			"CI/CD", "Git", "Docker", "Logging", "Fintech domain",
 		},
 	}
 }

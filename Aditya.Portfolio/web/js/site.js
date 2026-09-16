@@ -1,7 +1,7 @@
 const TOKENS = [
-  "C#", ".NET", "CI/CD", "SQL", "Postgres", "Redis",
-  "K8s", "Nginx", "gRPC", "APIs", "JVM", "Docker",
-  "Payments", "ASP.NET", "Git", "Observability"
+  "Go", "Gin", "CI/CD", "SQL", "Postgres", "Redis",
+  "K8s", "Nginx", "gRPC", "APIs", "Docker", "Linux",
+  "Payments", "REST", "Git", "Observability"
 ];
 
 function formatUptime(seconds) {

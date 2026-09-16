@@ -5,11 +5,13 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/adityax28/fastport/internal/config"
 	"github.com/adityax28/fastport/internal/models"
 	"github.com/adityax28/fastport/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 )
 
 // PortfolioHandler groups profile + status endpoints (like a PortfolioController).
@@ -53,7 +55,7 @@ func (h *ContactHandler) PostContact(c *gin.Context) {
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, models.ContactResponse{
 			Ok:      false,
-			Message: "Name is required. A valid email is required. Message should be at least 10 characters.",
+			Message: contactValidationMessage(err),
 		})
 		return
 	}
@@ -64,4 +66,28 @@ func (h *ContactHandler) PostContact(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, resp)
+}
+
+// contactValidationMessage turns Gin/validator errors into user-friendly text
+// (mirrors the explicit error list from the old ASP.NET Program.cs handler).
+func contactValidationMessage(err error) string {
+	var msgs []string
+
+	if ve, ok := err.(validator.ValidationErrors); ok {
+		for _, fe := range ve {
+			switch fe.Field() {
+			case "Name":
+				msgs = append(msgs, "Name is required.")
+			case "Email":
+				msgs = append(msgs, "A valid email is required.")
+			case "Message":
+				msgs = append(msgs, "Message should be at least 10 characters.")
+			}
+		}
+	}
+
+	if len(msgs) == 0 {
+		return "Invalid request body."
+	}
+	return strings.Join(msgs, " ")
 }
